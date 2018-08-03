@@ -1,3 +1,41 @@
-<p>
-  heroes works!
-</p>
+<h1>HEROES</h1>
+<hr>
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        <!-- El id que recibe la ruta heroe para crear un heroe nuevo: 'nuevo' y se pone / para partir de la raiz-->
+        <button [routerLink]="['/heroe','nuevo']" type="button" class="btn btn-primary">Nuevo heroe</button>
+    </div>
+</div>
+
+<br>
+
+<div class="row animated fadeIn fast">
+    <div class="col-md-12">
+
+        <div class="table-responsive">
+
+            <table class="table table-sm table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Casa</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

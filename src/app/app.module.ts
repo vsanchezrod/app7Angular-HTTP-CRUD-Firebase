@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 // Para trabajar con HTTP
 import { HttpModule } from '@angular/http';
 
-
 // Componentes
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
@@ -15,6 +14,9 @@ import { HeroeComponent } from './components/heroes/heroe.component';
 
 // Rutas
 import { APP_ROUTING } from './app.routes';
+
+// Servicios
+import { HeroesService } from './services/heroes.service';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { APP_ROUTING } from './app.routes';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    HeroesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
