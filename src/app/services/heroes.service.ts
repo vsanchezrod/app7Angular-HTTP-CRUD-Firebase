@@ -8,6 +8,7 @@ import { Heroe } from '../interfaces/heroe.interface';
 
 // Se importa para poder usar map
 import 'rxjs-compat';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ import 'rxjs-compat';
 export class HeroesService {
 
   heroesFireUrl: string = 'https://heroesapp-1a6db.firebaseio.com/heroes.json';
-
+  heroeFireUrl: string = 'https://heroesapp-1a6db.firebaseio.com/heroes/';
 
   constructor(private http: Http) { }
 
 
-  // Función para insertar nuevo heroe
-  nuevoHeroe(heroe: Heroe) {
+  // POST - Función para insertar nuevo heroe
+  public nuevoHeroe(heroe: Heroe): Observable<any> {
 
     // CUERPO PETICIÓN. Se va a crear un string de un JSON válido
     let body = JSON.stringify(heroe);
@@ -40,5 +41,27 @@ export class HeroesService {
     });
 
   }
+
+   // PUT - Función para actualizar un heroe
+  actualizarHeroe(heroe: Heroe, key$: string) {
+
+    // CUERPO PETICIÓN. Se va a crear un string de un JSON válido
+    let body = JSON.stringify(heroe);
+
+    // CABECERA DEL CUERPO DE LA PETICIÓN
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    // Se crea un nueva URL con el key$ que es el ID del heroe (nomre del nodo de la BBDD)
+    let url = `${this.heroeFireUrl}/${key$}.json`;
+
+    return this.http.put(url, body, {headers}).map(res => {
+      console.log(res.json());
+      return res.json();
+    });
+
+  }
+
 
 }
