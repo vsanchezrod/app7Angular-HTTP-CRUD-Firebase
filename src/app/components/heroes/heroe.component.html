@@ -6,15 +6,15 @@
     <div class="col-md-12">
 
         <!-- Formulario para la creación de un nuevo héroe-->
-        <form (ngSubmit)="guardar()">
+        <form (ngSubmit)="guardar()" #forma="ngForm">
             <div class="form-group">
                 <label>Nombre</label>
-                <input [(ngModel)]="heroe.nombre" name="nombre" type="text" name="" class="form-control" placeholder="Nombre del héroe" required>
+                <input [(ngModel)]="heroe.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del héroe" required>
             </div>
 
             <div class="form-group">
                 <label>Casa</label>
-                <select [(ngModel)]="heroe.casa" name="casa" class="form-control" name="">
+                <select [(ngModel)]="heroe.casa" name="casa" class="form-control">
                   <option value="Marvel">Marvel</option>
                   <option value="DC">DC</option>
                 </select>
@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label>Bio</label>
-                <textarea [(ngModel)]="heroe.bio" name="bio" type="text" name="" class="form-control" placeholder="Biografía"></textarea>
+                <textarea [(ngModel)]="heroe.bio" name="bio" type="text" class="form-control" placeholder="Biografía"></textarea>
             </div>
 
             <div class="form-group">
