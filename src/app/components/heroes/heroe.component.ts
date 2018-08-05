@@ -13,9 +13,6 @@ import { HeroesService } from '../../services/heroes.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
 
-
-
-
 @Component({
   selector: 'app-heroe',
   templateUrl: './heroe.component.html',
@@ -24,10 +21,10 @@ import { Router, ActivatedRoute} from '@angular/router';
 export class HeroeComponent implements OnInit {
 
   // Crear un objeto que permita setear datos y a la vez poder realizar el posteo de esa información
-  heroe: Heroe = {
+  private heroe: Heroe = {
     nombre: '',
     bio: '',
-    casa: '',
+    casa: 'Marvel',
   };
 
   nuevo: boolean = false;
@@ -42,6 +39,14 @@ export class HeroeComponent implements OnInit {
 
       // Se atribuye el valor del paŕametro al id
       this.id = parametros['id'];
+
+      // Si la id es diferente de 'nuevo' carga los datos del heroe en el formulario
+      if (this.id !== 'nuevo') {
+        this._heroesService.getHeroe(this.id).subscribe(heroe => {
+          this.heroe = heroe;
+        });
+      }
+
     });
   }
 
@@ -71,5 +76,15 @@ export class HeroeComponent implements OnInit {
     }
 
   }
+
+  agregarNuevo(forma: NgForm) {
+    this.router.navigate(['/heroe', 'nuevo']);
+
+    forma.reset ({
+      casa: 'Marvel'
+    });
+  }
+
+
 
 }

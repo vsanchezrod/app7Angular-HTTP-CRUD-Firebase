@@ -43,7 +43,7 @@ export class HeroesService {
   }
 
    // PUT - Función para actualizar un heroe
-  actualizarHeroe(heroe: Heroe, key$: string) {
+  actualizarHeroe(heroe: Heroe, key$: string): Observable<any> {
 
     // CUERPO PETICIÓN. Se va a crear un string de un JSON válido
     let body = JSON.stringify(heroe);
@@ -63,5 +63,23 @@ export class HeroesService {
 
   }
 
+  // GET - Función para realizar una petición GET y recuperar un héroe
+  getHeroe(key$: string): Observable<any> {
+
+    // URL para el get
+    let url = `${this.heroeFireUrl}/${key$}.json`;
+
+    return this.http.get(url).map(res => {
+      return res.json();
+    });
+  }
+
+  // GET - Función para realizar una petición GET y recuperar el listado de héroes
+  getHeroes(): Observable<any> {
+
+    return this.http.get(this.heroesFireUrl).map(res => {
+      return res.json();
+    });
+  }
 
 }
