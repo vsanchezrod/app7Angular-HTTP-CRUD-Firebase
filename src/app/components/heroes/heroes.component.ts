@@ -13,6 +13,7 @@ export class HeroesComponent implements OnInit {
 
   // Se crea un array
   heroes: any[] = [];
+  loading: boolean = true;
 
 
   constructor(private _heroesService: HeroesService) {
@@ -20,6 +21,7 @@ export class HeroesComponent implements OnInit {
     // Para cargar todos los heroes en la tabla
     this._heroesService.getHeroes().subscribe(data => {
       this.heroes = data;
+      this.loading = false;
     });
 
 
@@ -27,7 +29,7 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   // Función para borrar héroe
   borrarHeroe(key$: string) {
     this._heroesService.borrarHeroe(key$).subscribe(respuesta => {

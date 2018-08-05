@@ -37,6 +37,15 @@
                 </tbody>
             </table>
 
+            <!-- Alerta de bootstrap para informar de que no hay registros-->
+            <div *ngIf="(heroes | keys).length === 0 && !loading" class="alert alert-info" role="alert">
+                <strong>No hay registros que mostrar</strong>
+            </div>
+
+            <!-- Alerta de bootstrap para informar de que los datos están cargando-->
+            <div *ngIf="loading" class="alert alert-warning" role="alert">
+                <strong>Cargando... por favor espere</strong>
+            </div>
         </div>
 
     </div>
