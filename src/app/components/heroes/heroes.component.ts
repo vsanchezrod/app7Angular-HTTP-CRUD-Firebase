@@ -27,6 +27,20 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  // Función para borrar héroe
+  borrarHeroe(key$: string) {
+    this._heroesService.borrarHeroe(key$).subscribe(respuesta => {
 
+      // Según la documentación de FireBase si devuelve algo ha sido un error
+      if (respuesta !== null) {
+        console.error(respuesta);
+      }
+      else {
+        // Todo ha ido bien -> Se necesita eliminar el objeto de la tabla sin recargar la pagina
+        delete this.heroes[key$];
+      }
+    });
+  }
 }
 

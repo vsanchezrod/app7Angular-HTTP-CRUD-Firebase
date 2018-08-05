@@ -82,4 +82,14 @@ export class HeroesService {
     });
   }
 
+  borrarHeroe(key$: string): Observable<any> {
+
+    // URL
+    let url = `${this.heroeFireUrl}/${key$}.json`;
+    return this.http.delete(url).map(res => {
+      return res.json();
+    });
+  }
+
+
 }
